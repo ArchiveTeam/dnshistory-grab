@@ -159,7 +159,7 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
   end
   
   if status_code >= 500 or
-    (status_code >= 401 and status_code ~= 404) or
+    (status_code >= 300 and status_code ~= 404) or
     status_code == 0 then
     io.stdout:write("Server returned "..http_stat.statcode.." ("..err.."). Sleeping.\n")
     io.stdout:flush()
@@ -169,7 +169,7 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
       io.stdout:write("\nI give up...\n")
       io.stdout:flush()
       tries = 0
-      if allowed(url["url"]) then
+      if allowed(url["url"]) or string.match(url["url"], "^https://dnshistory.org/subdomains/[0-9]+/"..item_tld.."$") then
         return wget.actions.ABORT
       else
         return wget.actions.EXIT
