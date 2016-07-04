@@ -58,7 +58,7 @@ if not WGET_LUA:
 #
 # Update this each time you make a non-cosmetic change.
 # It will be added to the WARC files and reported to the tracker.
-VERSION = "20160704.03"
+VERSION = "20160704.04"
 USER_AGENT = 'ArchiveTeam'
 TRACKER_ID = 'dnshistory'
 TRACKER_HOST = 'tracker.archiveteam.org'
@@ -221,20 +221,20 @@ class WgetArgs(object):
 # This will be shown in the warrior management panel. The logo should not
 # be too big. The deadline is optional.
 project = Project(
-    title="arto",
+    title="dnshistory",
     project_html="""
-        <img class="project-logo" alt="Project logo" src="http://archiveteam.org/images/9/93/Arto-share-logo_130x75.png" height="50px" title=""/>
-        <h2>arto.com <span class="links"><a href="http://arto.com/">Website</a> &middot; <a href="http://tracker.archiveteam.org/arto/">Leaderboard</a></span></h2>
-        <p>Archiving all profiles from arto.</p>
+        <img class="project-logo" alt="Project logo" src="http://archiveteam.org/images/a/ad/Dns-history-org_logo.png" height="50px" title=""/>
+        <h2>dnshistory.org <span class="links"><a href="http://dnshistory.org/">Website</a> &middot; <a href="http://tracker.archiveteam.org/dnshistory/">Leaderboard</a></span></h2>
+        <p>Archiving all records from DNS History.</p>
     """,
-    utc_deadline=datetime.datetime(2016, 6, 1, 23, 59, 0)
+    utc_deadline=datetime.datetime(2016, 7, 10, 23, 59, 0)
 )
 
 pipeline = Pipeline(
     CheckIP(),
     GetItemFromTracker("http://%s/%s" % (TRACKER_HOST, TRACKER_ID), downloader,
         VERSION),
-    PrepareDirectories(warc_prefix="arto"),
+    PrepareDirectories(warc_prefix="dnshistory"),
     WgetDownload(
         WgetArgs(),
         max_tries=2,
