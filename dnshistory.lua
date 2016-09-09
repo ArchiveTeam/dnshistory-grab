@@ -135,6 +135,12 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
   return urls
 end
   
+wget.callbacks.lookup_host = function(host)
+  if host == 'dnshistory.org' or host == 'www.dnshistory.org' or host == 'd4a.net' then
+    return "178.63.72.28"
+  end
+end
+
 
 wget.callbacks.httploop_result = function(url, err, http_stat)
   -- NEW for 2014: Slightly more verbose messages because people keep
